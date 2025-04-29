@@ -6,16 +6,12 @@ let tasksList = document.getElementsByClassName('tasks')[0];
 window.onload = loadTasksFromLocalStorage;
 
 
-addBtn.addEventListener('click', () =>{
-    let taskName = inputTask.value;
-    if (taskName != ''){
-        let newTask = document.createElement("li");
-        newTask.innerHTML = `${taskName} <i class="fa-solid fa-xmark"></i>`
-        tasksList.appendChild(newTask);
-        saveTasksToLocalStorage();
+addBtn.addEventListener('click', addNewTask);
+inputTask.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addNewTask();
     }
 });
-
 tasksList.addEventListener('click', (event)=>{
     if (event.target.tagName === 'LI') {
         event.target.classList.toggle("task-done");
@@ -27,6 +23,16 @@ tasksList.addEventListener('click', (event)=>{
     saveTasksToLocalStorage();
 });
 
+
+function addNewTask(){
+    let taskName = inputTask.value;
+    if (taskName != ''){
+        let newTask = document.createElement("li");
+        newTask.innerHTML = `${taskName} <i class="fa-solid fa-xmark"></i>`
+        tasksList.appendChild(newTask);
+        saveTasksToLocalStorage();
+    }
+}
 
 function saveTasksToLocalStorage() {
     const tasks = [];

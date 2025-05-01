@@ -31,6 +31,7 @@ function addNewTask(){
         newTask.innerHTML = `${taskName} <i class="fa-solid fa-xmark"></i>`
         tasksList.appendChild(newTask);
         saveTasksToLocalStorage();
+        inputTask.value = "";
     }
 }
 
